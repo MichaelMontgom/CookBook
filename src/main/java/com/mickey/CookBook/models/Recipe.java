@@ -1,22 +1,38 @@
 package com.mickey.CookBook.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
+import java.util.Set;
 
+
+@Entity
 public class Recipe {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String name;
     private String author;
     private String instructions;
-    private List<Ingredient> ingredientList;
+//    private Set<Ingredient> ingredients;
     private String cookTime;
     private String cookTemp;
     private String difficulty;
 
-    public Recipe(String name, String author, String instructions, List<Ingredient> ingredientList, String cookTime, String cookTemp, String difficulty) {
+    public Recipe(){
+
+    }
+
+
+    public Recipe(String name, String author, String instructions, Set<Ingredient> ingredients, String cookTime, String cookTemp, String difficulty) {
         this.name = name;
         this.author = author;
         this.instructions = instructions;
-        this.ingredientList = ingredientList;
+//        this.ingredients = ingredients;
         this.cookTime = cookTime;
         this.cookTemp = cookTemp;
         this.difficulty = difficulty;
@@ -46,13 +62,13 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
-    }
-
-    public void setIngredientList(List<Ingredient> ingredientList) {
-        this.ingredientList = ingredientList;
-    }
+//    public Set<Ingredient> getIngredients() {
+//        return ingredients;
+//    }
+//
+//    public void setIngredients(Set<Ingredient> ingredients) {
+//        this.ingredients = ingredients;
+//    }
 
     public String getCookTime() {
         return cookTime;
@@ -81,10 +97,11 @@ public class Recipe {
     @Override
     public String toString() {
         return "Recipe{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
                 ", instructions='" + instructions + '\'' +
-                ", ingredientList=" + ingredientList +
+//                ", ingredients=" + ingredients +
                 ", cookTime='" + cookTime + '\'' +
                 ", cookTemp='" + cookTemp + '\'' +
                 ", difficulty='" + difficulty + '\'' +
