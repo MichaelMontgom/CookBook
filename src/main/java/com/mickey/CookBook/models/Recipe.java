@@ -28,7 +28,7 @@ public class Recipe {
     }
 
 
-    public Recipe(String name, String author, String instructions, Set<Ingredient> ingredients, String cookTime, String cookTemp, String difficulty) {
+    public Recipe(String name, String author, String instructions,  String cookTime, String cookTemp, String difficulty) {
         this.name = name;
         this.author = author;
         this.instructions = instructions;
