@@ -14,9 +14,9 @@
 	<name>CookBook</name>
 	<description>Cook book project for my father</description>
 
-	<properties>
-		<java.version>14</java.version>
-	</properties>
+<!--	<properties>-->
+<!--		<java.version>14</java.version>-->
+<!--	</properties>-->
 
 	<dependencies>
 		<dependency>
