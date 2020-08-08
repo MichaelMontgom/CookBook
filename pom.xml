@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>14</java.version>
-		<maven.compiler.release>14</maven.compiler.release>
+		<maven.compiler.release>3.8.1</maven.compiler.release>
 	</properties>
 
 
