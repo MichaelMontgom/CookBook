@@ -1,9 +1,6 @@
 package com.mickey.CookBook.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
@@ -13,14 +10,20 @@ public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Long id;
-
+    @Column
     private String name;
+    @Column
     private String author;
+    @Column
     private String instructions;
 //    private Set<Ingredient> ingredients;
+    @Column
     private String cookTime;
+    @Column
     private String cookTemp;
+    @Column
     private String difficulty;
 
     public Recipe(){
@@ -36,6 +39,10 @@ public class Recipe {
         this.cookTime = cookTime;
         this.cookTemp = cookTemp;
         this.difficulty = difficulty;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

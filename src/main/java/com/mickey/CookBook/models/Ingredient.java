@@ -8,11 +8,19 @@ public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Long id;
 
+    @Column
     private Double amount;
+
+    @Column
     private String unit;
+
+    @Column
     private String description;
+
+    @Column
     private String category;
 
     @ManyToOne
