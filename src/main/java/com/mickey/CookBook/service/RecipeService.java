@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class RecipeService {
     @Autowired
@@ -23,6 +25,11 @@ public class RecipeService {
         it.forEach(e -> recipes.add(e));
 
         return recipes;
+    }
+
+    public Optional<Recipe> findById(Long id){
+        Optional<Recipe> r = recipeRepository.findById(id);
+        return r;
     }
 
     public Long count(){

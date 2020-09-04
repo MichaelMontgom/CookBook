@@ -35,7 +35,6 @@ public class Recipe {
         this.name = name;
         this.author = author;
         this.instructions = instructions;
-//        this.ingredients = ingredients;
         this.cookTime = cookTime;
         this.cookTemp = cookTemp;
         this.difficulty = difficulty;
@@ -68,14 +67,6 @@ public class Recipe {
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
-
-//    public Set<Ingredient> getIngredients() {
-//        return ingredients;
-//    }
-//
-//    public void setIngredients(Set<Ingredient> ingredients) {
-//        this.ingredients = ingredients;
-//    }
 
     public String getCookTime() {
         return cookTime;
