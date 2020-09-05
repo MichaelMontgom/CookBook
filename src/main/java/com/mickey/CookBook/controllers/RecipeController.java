@@ -69,7 +69,8 @@ public class RecipeController {
         r  = recipe;
         recipeService.addRecipe(r);
         model.addAttribute("recipe", r);
-        return "recipes";
+        Long id = r.getId();
+        return "edit";
 
     }
 
@@ -82,6 +83,29 @@ public class RecipeController {
 
 
         return "delete";
+    }
+
+
+    @GetMapping("/view/{id}")
+    private String viewRecipe(@PathVariable String id, Model model){
+        Long recipeId = Long.parseLong(id);
+
+
+        Optional<Recipe> recipe = recipeService.findById(recipeId);
+
+        if(recipe.isPresent()){
+            Recipe r = recipe.get();
+            logger.info(r.toString());
+            model.addAttribute("recipe", r);
+        }
+        else{
+            logger.info("recipe not found");
+        }
+
+
+
+
+        return "view";
     }
 
 
