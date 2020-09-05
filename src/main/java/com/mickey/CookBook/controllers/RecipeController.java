@@ -1,6 +1,7 @@
 package com.mickey.CookBook.controllers;
 
 
+import com.mickey.CookBook.models.Ingredient;
 import com.mickey.CookBook.models.Recipe;
 import com.mickey.CookBook.service.IngredientService;
 import com.mickey.CookBook.service.RecipeService;
@@ -54,11 +55,24 @@ public class RecipeController {
 
     @GetMapping("/create")
     private String createRecipe(Model model){
-        return "recipes";
+        Recipe recipe = new Recipe();
+        model.addAttribute("recipe", recipe);
+        Ingredient ingredient = new Ingredient();
+        model.addAttribute("ingredient",ingredient);
+
+        return "create";
     }
 
 
 
+    @GetMapping("/recipes/delete/{id}")
+    private String deleteRecipe(Model model, @PathVariable String id){
+        Long recipeId = Long.parseLong(id);
+
+
+
+        return "delete";
+    }
 
 
 
