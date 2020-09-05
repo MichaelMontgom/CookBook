@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${recipe.name}"></title>
+</head>
+<body>
+<div class="sidenav" th:replace=" fragments/sidenav :: sidenav"></div>
+
+<div class="main">
+    <div>
+        <h1 class="display-3" th:text="${recipe.name}"></h1>
+    </div>
+    <div>
+        <h1>
+        <small class="text-muted" th:text="'By ' + ${recipe.author}"></small>
+        </h1>
+    </div>
+
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <th scope="row">Ingredients</th>
+
+                    <td><pre th:text="${recipe.ingredients}"></pre></td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Instructions</th>
+                    <td><pre th:text="${recipe.instructions}"></pre></td>
+                </tr>
+                <tr>
+                    <th scope="row">Cook Temperature</th>
+                    <td th:text="${recipe.cookTemp}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Cook Time</th>
+                    <td th:text="${recipe.cookTime}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Difficulty</th>
+                    <td th:text="${recipe.difficulty}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

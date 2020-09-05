@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type" content="text/html">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="sidenav" th:replace=" fragments/sidenav :: sidenav"></div>
+
+<div class="main">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Cook Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="recipe: ${recipes}">
+                <a th:href="${'/recipes/' + recipe.getId()}"/>
+                    <td th:text="${recipe.getName()}" />
+                    <td th:text="${recipe.getAuthor()}" />
+                    <td th:text="${recipe.getCookTime()}" />
+                </a>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+
+
+
+</body>
+</html>
