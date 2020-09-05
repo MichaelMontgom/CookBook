@@ -63,6 +63,16 @@ public class RecipeController {
         return "create";
     }
 
+    @PostMapping("/create")
+    private String recipeSubmit(@ModelAttribute Recipe recipe, Model model){
+        Recipe r = new Recipe();
+        r  = recipe;
+        recipeService.addRecipe(r);
+        model.addAttribute("recipe", r);
+        return "recipes";
+
+    }
+
 
 
     @GetMapping("/recipes/delete/{id}")

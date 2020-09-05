@@ -18,7 +18,11 @@ public class Recipe {
     private String author;
     @Column
     private String instructions;
-//    private Set<Ingredient> ingredients;
+
+    @Column
+    private String ingredients;
+
+
     @Column
     private String cookTime;
     @Column
@@ -31,9 +35,10 @@ public class Recipe {
     }
 
 
-    public Recipe(String name, String author, String instructions,  String cookTime, String cookTemp, String difficulty) {
+    public Recipe(String name, String author,String ingredients,  String instructions,  String cookTime, String cookTemp, String difficulty) {
         this.name = name;
         this.author = author;
+        this.ingredients = ingredients;
         this.instructions = instructions;
         this.cookTime = cookTime;
         this.cookTemp = cookTemp;
@@ -58,6 +63,14 @@ public class Recipe {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 
     public String getInstructions() {

@@ -30,11 +30,11 @@ public class MyRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         logger.info("initializing recipes");
 
-        var r1 = new Recipe("Spaghetti", "John", "Bake that shit", "30 mins", "350 F", "Easy");
+        var r1 = new Recipe("Spaghetti", "John","5 0Z canned sauce, 1 box of noodles", "Bake that shit", "30 mins", "350 F", "Easy");
         recipeRepository.save(r1);
         logger.info(r1.toString());
 
-        var r2 = new Recipe("Baked Chicken", "Mary", "Bake that shit", "40 mins", "350 F", "Hard");
+        var r2 = new Recipe("Baked Chicken", "Mary","5 lbs. skinless chicken breast, 1 stick of butter", "Bake that shit", "40 mins", "350 F", "Hard");
         recipeRepository.save(r2);
 
 
