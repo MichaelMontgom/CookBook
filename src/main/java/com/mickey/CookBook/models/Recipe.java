@@ -1,6 +1,10 @@
 package com.mickey.CookBook.models;
 
+import com.mickey.CookBook.service.RecipeService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,8 +23,8 @@ public class Recipe {
     @Column
     private String instructions;
 
-    @Column
-    private String ingredients;
+//    @Column
+//    private String ingredients;
 
 
     @Column
@@ -30,15 +34,24 @@ public class Recipe {
     @Column
     private String difficulty;
 
+    @Lob
+    @Column(columnDefinition = "BLOB")
+    private byte[] picture;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients = new HashSet<>();
+
+
+
     public Recipe(){
 
     }
 
 
-    public Recipe(String name, String author,String ingredients,  String instructions,  String cookTime, String cookTemp, String difficulty) {
+    public Recipe(String name, String author,  String instructions,  String cookTime, String cookTemp, String difficulty) {
         this.name = name;
         this.author = author;
-        this.ingredients = ingredients;
         this.instructions = instructions;
         this.cookTime = cookTime;
         this.cookTemp = cookTemp;
@@ -63,14 +76,6 @@ public class Recipe {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
     }
 
     public String getInstructions() {
@@ -104,6 +109,8 @@ public class Recipe {
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
+
+
 
     @Override
     public String toString() {

@@ -34,7 +34,7 @@ public class RecipeController {
     private String getAllRecipes(Model model){
 
         model.addAttribute("recipes", recipeService.findAll());
-        model.addAttribute("ingredients", recipeService.getIngredients((long) 1));
+
 
         return "recipes";
     }
@@ -53,27 +53,28 @@ public class RecipeController {
         return "edit";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/create/recipe")
     private String createRecipe(Model model){
         Recipe recipe = new Recipe();
         model.addAttribute("recipe", recipe);
         Ingredient ingredient = new Ingredient();
         model.addAttribute("ingredient",ingredient);
 
-        return "create";
+        return "createRecipe";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create/recipe")
     private String recipeSubmit(@ModelAttribute Recipe recipe, Model model){
         Recipe r = new Recipe();
         r  = recipe;
         recipeService.addRecipe(r);
         model.addAttribute("recipe", r);
         Long id = r.getId();
-        return "edit";
+
+        model.addAttribute("recipes", recipeService.findAll());
+        return "recipes";
 
     }
-
 
 
     @GetMapping("/recipes/delete/{id}")
@@ -97,6 +98,9 @@ public class RecipeController {
             Recipe r = recipe.get();
             logger.info(r.toString());
             model.addAttribute("recipe", r);
+
+            model.addAttribute("ingredients", recipeService.getIngredients(recipeId));
+
         }
         else{
             logger.info("recipe not found");
