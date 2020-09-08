@@ -47,10 +47,40 @@ public class RecipeController {
 
         if(recipe.isPresent()){
             Recipe r = recipe.get();
+            logger.info(r.toString());
             model.addAttribute("recipe", r);
+            model.addAttribute("id", r.getId());
         }
 
         return "edit";
+    }
+
+    @PostMapping("/recipes/edit")
+    private String submitEditRecipe(Model model,  @ModelAttribute Recipe recipe, @RequestParam("recipeId") Long id){
+
+        logger.info(recipe.toString());
+        logger.info(id.toString());
+
+        Optional<Recipe> recipe2 = recipeService.findById(id);
+
+        if(recipe2.isPresent()){
+            Recipe r = recipe2.get();
+
+            r.setAuthor(recipe.getAuthor());
+            r.setName(recipe.getName());
+            r.setInstructions(recipe.getInstructions());
+            r.setCookTemp(recipe.getCookTemp());
+            r.setCookTime(recipe.getCookTime());
+            r.setDifficulty(recipe.getDifficulty());
+
+            recipeService.saveRecipe(r);
+
+
+        }
+
+        model.addAttribute("recipes", recipeService.findAll());
+
+        return "recipes";
     }
 
     @GetMapping("/create/recipe")

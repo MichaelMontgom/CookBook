@@ -72,6 +72,10 @@ public class RecipeService {
 
     }
 
+    public void saveRecipe(Recipe recipe){
+        recipeRepository.save(recipe);
+    }
+
 
 
 }
