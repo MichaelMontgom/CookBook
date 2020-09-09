@@ -8,10 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class IngredientController {
@@ -33,18 +30,26 @@ public class IngredientController {
         Long recipeId = Long.parseLong(id);
 
         Ingredient ingredient = new Ingredient();
-        ingredient.setRecipe(recipeService.findById(recipeId).get());
+
         model.addAttribute("ingredient", ingredient);
+        model.addAttribute("recipe",recipeService.findById(recipeId).get() );
         return "createIngredients";
     }
 
+
     @PostMapping("/create/ingredients")
-    private String submitIngredient(@ModelAttribute Ingredient ingredient,  Model model){
-
+    private String submitIngredient(@ModelAttribute Ingredient ingredient,  Model model, @RequestParam("recipeId") Long id){
+        ingredient.setRecipe(recipeService.findById(id).get());
         ingredientService.addIngredient(ingredient);
+        logger.info(ingredient.toString());
 
-        Ingredient new_ingredient = new Ingredient();
-        model.addAttribute("ingredient", new_ingredient);
+
+        ingredient = new Ingredient();
+        model.addAttribute("ingredient", ingredient);
+        model.addAttribute("recipe",recipeService.findById(id).get() );
+
+        model.addAttribute("recipes", recipeService.findAll());
+
 
         return "createIngredients";
     }

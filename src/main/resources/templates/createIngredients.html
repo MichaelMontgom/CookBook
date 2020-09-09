@@ -10,7 +10,9 @@
 <div class="main">
 
 
-<form action="#" th:action="@{/recipes}" method="POST" th:object="${ingredient}">
+<form action="#" th:action="@{/create/ingredients}" method="post" th:object="${ingredient}">
+
+    <input type="hidden" name="recipeId" th:value="${recipe.id}">
 
     <div class="form-group">
         <label for="amount">Ingredient Amount</label>
@@ -32,10 +34,15 @@
         <input type="text" class="form-control" placeholder="Category" id="cat" th:field="*{category}"/>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create Recipe</button>
+    <button type="submit" class="btn btn-primary">Create Ingredient</button>
 
 
 </form>
+
+    <div>
+        <br>
+        <a class="btn btn-primary" th:href="${'/view/' + recipe.getId()}">Back</a>
+    </div>
 
 </div>
 </body>

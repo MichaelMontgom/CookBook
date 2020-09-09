@@ -74,8 +74,6 @@ public class RecipeController {
             r.setDifficulty(recipe.getDifficulty());
 
             recipeService.saveRecipe(r);
-
-
         }
 
         model.addAttribute("recipes", recipeService.findAll());
@@ -100,7 +98,7 @@ public class RecipeController {
         recipeService.addRecipe(r);
         model.addAttribute("recipe", r);
         Long id = r.getId();
-
+        model.addAttribute("recipe", recipe);
         model.addAttribute("recipes", recipeService.findAll());
         return "recipes";
 
@@ -120,25 +118,18 @@ public class RecipeController {
     @GetMapping("/view/{id}")
     private String viewRecipe(@PathVariable String id, Model model){
         Long recipeId = Long.parseLong(id);
-
-
         Optional<Recipe> recipe = recipeService.findById(recipeId);
 
         if(recipe.isPresent()){
             Recipe r = recipe.get();
             logger.info(r.toString());
             model.addAttribute("recipe", r);
-
+            logger.info(recipeService.getIngredients(recipeId).toString());
             model.addAttribute("ingredients", recipeService.getIngredients(recipeId));
-
         }
         else{
             logger.info("recipe not found");
         }
-
-
-
-
         return "view";
     }
 

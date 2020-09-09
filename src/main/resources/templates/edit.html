@@ -45,9 +45,15 @@
             <input type="text" class="form-control" placeholder="Difficulty" id="Difficulty" th:field="*{difficulty}"/>
         </div>
 
-        <button type="submit" class="btn btn-primary">Create Recipe</button>
+        <button type="submit" class="btn btn-primary">Edit Recipe</button>
 
     </form>
+
+    <div>
+        <br>
+        <a class="btn btn-primary" th:href="${'/create/ingredients/' + recipe.getId()}">Create Ingredients</a>
+    </div>
+
 
 </div>
 
