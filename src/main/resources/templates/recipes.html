@@ -16,18 +16,22 @@
                 <th>Name</th>
                 <th>Author</th>
                 <th>Cook Time</th>
+
             </tr>
         </thead>
         <tbody>
             <tr th:each="recipe: ${recipes}">
-                <a th:href="${'/recipes/' + recipe.getId()}"/>
-                    <td th:text="${recipe.getName()}" />
-                    <td th:text="${recipe.getAuthor()}" />
-                    <td th:text="${recipe.getCookTime()}" />
-                </a>
+                <td><a th:href="${'/view/' + recipe.getId()}" th:text="${recipe.getName()}"></a></td>
+                <td th:text="${recipe.getAuthor()}" />
+                <td th:text="${recipe.getCookTime()}" />
+
+
+
             </tr>
         </tbody>
     </table>
+
+
 
 
 </div>
