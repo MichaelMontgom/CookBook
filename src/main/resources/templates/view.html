@@ -59,7 +59,31 @@
         </table>
     </div>
 
-    <a class="btn btn-primary" th:href="${'/recipes/edit/' + recipe.getId()}">Edit</a>
+    <div>
+        <a class="btn btn-primary" th:href="${'/recipes/edit/' + recipe.getId()}">Edit</a>
+    </div>
+    <div>
+
+        <form action="#" th:action="@{/grocery-list/add}" method="post" th:object="${groceryListForm}">
+            <input type="hidden" name="recipeId" th:value="${recipe.id}">
+
+            <div class="form-group" >
+                <select th:field="*{id}" id="groceryListId" >
+                    <option th:each="list: ${groceryLists}"
+                    th:value="${list.id}"
+                    th:text="${list.name}" name="groceryListId">
+
+                    </option>
+                </select>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Add To GroceryList</button>
+
+        </form>
+    </div>
+
 
 
 

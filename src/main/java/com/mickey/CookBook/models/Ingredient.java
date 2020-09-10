@@ -26,6 +26,9 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    private GroceryList groceryList;
+
     public Ingredient(){
 
     }
@@ -86,6 +89,13 @@ public class Ingredient {
         this.recipe = recipe;
     }
 
+    public GroceryList getGroceryList() {
+        return groceryList;
+    }
+
+    public void setGroceryList(GroceryList groceryList) {
+        this.groceryList = groceryList;
+    }
 
     @Override
     public String toString() {

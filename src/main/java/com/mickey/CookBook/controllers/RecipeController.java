@@ -1,8 +1,11 @@
 package com.mickey.CookBook.controllers;
 
 
+import com.mickey.CookBook.models.GroceryList;
+import com.mickey.CookBook.models.GroceryListForm;
 import com.mickey.CookBook.models.Ingredient;
 import com.mickey.CookBook.models.Recipe;
+import com.mickey.CookBook.service.GroceryListService;
 import com.mickey.CookBook.service.IngredientService;
 import com.mickey.CookBook.service.RecipeService;
 import org.slf4j.Logger;
@@ -24,6 +27,9 @@ public class RecipeController {
 
     @Autowired
     private IngredientService ingredientService;
+
+    @Autowired
+    private GroceryListService groceryListService;
 
     @GetMapping("/")
     private String getHome(Model model){
@@ -130,6 +136,12 @@ public class RecipeController {
         else{
             logger.info("recipe not found");
         }
+        GroceryListForm gf = new GroceryListForm();
+        model.addAttribute("groceryListForm", gf);
+        model.addAttribute("groceryLists", groceryListService.findAll() );
+
+
+
         return "view";
     }
 

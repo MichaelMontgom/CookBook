@@ -45,7 +45,7 @@ public class RecipeService {
         recipeRepository.deleteById(recipeId);
     }
 
-    public List<Ingredient> getIngredients(Long recipeId){
+    public ArrayList<Ingredient> getIngredients(Long recipeId){
         var it = ingredientRepository.findAll();
 
         var ingredients = new ArrayList<Ingredient>();

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Grocery Lists</title>
+</head>
+<body>
+<div class="sidenav" th:replace=" fragments/sidenav :: sidenav"></div>
+
+<div class="main">
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Created</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="gl: ${groceryLists}">
+            <td><a th:href="${'/grocery-list/' + gl.getId()}" th:text="${gl.getName()}"></a></td>
+            <td th:text="${gl.getDateCreated()}" />
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

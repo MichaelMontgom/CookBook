@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${groceryList.name}"></title>
+</head>
+<body>
+<div class="sidenav" th:replace=" fragments/sidenav :: sidenav"></div>
+
+<div class="main">
+
+    <div>
+        <h1 class="display-3" th:text="${groceryList.name}"></h1>
+    </div>
+
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+            <tr>
+                <th scope="row">items</th>
+                <td>
+                    <ul th:each="ingredient: ${ingredients}" class="list-group list-group-flush">
+                        <li th:text="${ingredient.amount} + ' ' + ${ingredient.unit} + ' ' + ${ingredient.description} " class="list-group-item" ></li>
+
+                    </ul>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
