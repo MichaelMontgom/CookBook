@@ -61,14 +61,17 @@
 
     <div>
         <a class="btn btn-primary" th:href="${'/recipes/edit/' + recipe.getId()}">Edit</a>
+        <a class="btn btn-primary" th:href="${'/recipes/delete/' + recipe.getId()}">Delete</a>
     </div>
+
     <div>
+        <br>
 
         <form action="#" th:action="@{/grocery-list/add}" method="post" th:object="${groceryListForm}">
             <input type="hidden" name="recipeId" th:value="${recipe.id}">
 
             <div class="form-group" >
-                <select th:field="*{id}" id="groceryListId" >
+                <select th:field="*{id}" id="groceryListId" class="form-control">
                     <option th:each="list: ${groceryLists}"
                     th:value="${list.id}"
                     th:text="${list.name}" name="groceryListId">
@@ -76,6 +79,10 @@
                     </option>
                 </select>
             </div>
+
+
+
+
 
 
 

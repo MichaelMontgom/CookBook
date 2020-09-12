@@ -69,11 +69,12 @@ public class MyRunner implements CommandLineRunner {
         logger.info(ingredients.toString());
 
         var g1 = new GroceryList("name", new Date());
-        i1.setGroceryList(g1);
-        i2.setGroceryList(g1);
+//        i1.setGroceryList(g1);
+//        i2.setGroceryList(g1);
 
         logger.info(g1.toString());
         groceryListRepository.save(g1);
+        logger.info(groceryListRepository.findAll().toString());
 
 //        var g2 = new GroceryList("Lowes", new Date(), ingredients);
 //        logger.info(g2.toString());

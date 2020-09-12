@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Grocery List</title>
+</head>
+<body>
+<div class="sidenav" th:replace=" fragments/sidenav :: sidenav"></div>
+
+<div class="main">
+
+
+    <form action="#" th:action="@{/grocery-list/create}" method="post" th:object="${groceryListForm}">
+
+
+
+        <div class="form-group">
+            <label for="amount">Name</label>
+            <input type="text" class="form-control" placeholder="Amount" id="amount" th:field="*{name}"/>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">List</button>
+
+
+    </form>
+
+
+</div>
+</body>
+</html>l>

@@ -56,4 +56,14 @@ public class GroceryListForm {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+
+    @Override
+    public String toString() {
+        return "GroceryListForm{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", ingredients=" + ingredients +
+                '}';
+    }
 }

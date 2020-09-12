@@ -106,6 +106,7 @@ public class Ingredient {
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
                 ", recipe=" + recipe +
+                ", groceryList=" + groceryList +
                 '}';
     }
 }

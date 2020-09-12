@@ -10,7 +10,69 @@
 
 <div class="main">
 
+    <div><h1 th:text="'Are you sure you want to delete ' + ${recipe.name}"></h1></div>
 
+
+    <div>
+        <h2>
+            <small class="text-muted" th:text="'By ' + ${recipe.author}"></small>
+        </h2>
+    </div>
+
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+            <tr>
+                <th scope="row">Ingredients</th>
+                <td>
+                    <ul th:each="ingredient: ${ingredients}" class="list-group list-group-flush">
+                        <li th:text="${ingredient.amount} + ' ' + ${ingredient.unit} + ' ' + ${ingredient.description} " class="list-group-item" ></li>
+
+                    </ul>
+                </td>
+
+
+
+
+
+            </tr>
+            <tr>
+                <th scope="row">Instructions</th>
+                <td><pre th:text="${recipe.instructions}"></pre></td>
+            </tr>
+            <tr>
+                <th scope="row">Cook Temperature</th>
+                <td th:text="${recipe.cookTemp}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Cook Time</th>
+                <td th:text="${recipe.cookTime}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Difficulty</th>
+                <td th:text="${recipe.difficulty}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <form action="#" th:action="@{/recipes/delete/confirmation}" method="post" th:object="${recipeForm}">
+        <input type="hidden" name="recipeId" th:value="${recipe.id}">
+
+
+
+
+
+
+
+
+
+        <button type="submit" class="btn btn-primary">Delete Grocery List</button>
+
+    </form>
 
 </div>
 

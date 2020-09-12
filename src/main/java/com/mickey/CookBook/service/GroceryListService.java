@@ -55,11 +55,10 @@ public class GroceryListService {
         var ingredients = new ArrayList<Ingredient>();
 
         for(Ingredient ingredient: it){
-            if(ingredient.getGroceryList().getId() == groceryId){
+            if( ingredient.getGroceryList() != null && ingredient.getGroceryList().getId() == groceryId ){
                 ingredients.add(ingredient);
             }
         }
-
         return ingredients;
     }
 
@@ -76,6 +75,30 @@ public class GroceryListService {
 
     public void saveGroceryList(GroceryList groceryList){
         groceryListRepository.save(groceryList);
+    }
+
+    public void setIngredients(Recipe recipe, Long GLID){
+        var it = ingredientRepository.findAll();
+
+
+
+        for(Ingredient ingredient: it){
+
+            if(ingredient.getRecipe().getId() == recipe.getId()){
+
+
+                ingredient.setGroceryList(groceryListRepository.findById(GLID).get());
+                ingredientRepository.save(ingredient);
+
+
+            }
+        }
+
+
+
+
+
+
     }
 
 

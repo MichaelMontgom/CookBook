@@ -1,10 +1,7 @@
 package com.mickey.CookBook.controllers;
 
 
-import com.mickey.CookBook.models.GroceryList;
-import com.mickey.CookBook.models.GroceryListForm;
-import com.mickey.CookBook.models.Ingredient;
-import com.mickey.CookBook.models.Recipe;
+import com.mickey.CookBook.models.*;
 import com.mickey.CookBook.service.GroceryListService;
 import com.mickey.CookBook.service.IngredientService;
 import com.mickey.CookBook.service.RecipeService;
@@ -64,8 +61,6 @@ public class RecipeController {
     @PostMapping("/recipes/edit")
     private String submitEditRecipe(Model model,  @ModelAttribute Recipe recipe, @RequestParam("recipeId") Long id){
 
-        logger.info(recipe.toString());
-        logger.info(id.toString());
 
         Optional<Recipe> recipe2 = recipeService.findById(id);
 
@@ -87,7 +82,7 @@ public class RecipeController {
         return "recipes";
     }
 
-    @GetMapping("/create/recipe")
+    @GetMapping("/recipes/create")
     private String createRecipe(Model model){
         Recipe recipe = new Recipe();
         model.addAttribute("recipe", recipe);
@@ -97,9 +92,9 @@ public class RecipeController {
         return "createRecipe";
     }
 
-    @PostMapping("/create/recipe")
+    @PostMapping("/recipes/create")
     private String recipeSubmit(@ModelAttribute Recipe recipe, Model model){
-        Recipe r = new Recipe();
+        Recipe r;
         r  = recipe;
         recipeService.addRecipe(r);
         model.addAttribute("recipe", r);
@@ -114,10 +109,32 @@ public class RecipeController {
     @GetMapping("/recipes/delete/{id}")
     private String deleteRecipe(Model model, @PathVariable String id){
         Long recipeId = Long.parseLong(id);
+        Recipe recipe = new Recipe();
+
+        if(recipeService.findById(recipeId).isPresent()){
+            recipe = recipeService.findById(recipeId).get();
+        }
+
+
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("recipeForm", new RecipeForm());
+        model.addAttribute("ingredients", recipeService.getIngredients(recipeId));
+
+
 
 
 
         return "delete";
+    }
+
+    @PostMapping("/recipes/delete/confirmation")
+    private String deleteConfirmation(Model model, @ModelAttribute RecipeForm recipeForm, @RequestParam("recipeId") Long id){
+         logger.info(id.toString());
+
+         recipeService.deleteById(id);
+        model.addAttribute("recipes", recipeService.findAll());
+
+        return "recipes";
     }
 
 

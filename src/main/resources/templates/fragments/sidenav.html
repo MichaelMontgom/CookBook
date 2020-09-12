@@ -12,13 +12,13 @@
     <style type="text/css">
         .navbar-header {
             height:100%;
-            width:160px;
+            width:165px;
             position: fixed;
             z-index:1;
             top:0;
             left:0;
             background-color:#111;
-            overflow-x: :hidden;
+            overflow-x: hidden;
             padding-top:20px;
         }
 
@@ -29,24 +29,36 @@
             color: #818181;
             display:block;
         }
+        .navbar-header p {
+            padding:6px 8px 6px 16px;
+            text-decoration: none;
+            font-size:25px;
+            color: #818181;
+            display:block;
+            text-decoration: underline;
+        }
 
         .navbar-header a:hover{
             color:#f1f1f1;
         }
 
         .main{
-            margin-left:160px;
+            margin-left:165px;
             padding: 0px 10px;
         }
 
     </style>
 
     <div class="navbar-header">
-        <a class="navbar-brand" th:href="@{/}">My project</a>
         <a class="navbar-brand" th:href="@{/}">Home</a>
+        <br>
+        <p>Recipes</p>
         <a class="navbar-brand" th:href="@{/recipes}">Recipes</a>
-        <a class="navbar-brand" th:href="@{/create/recipe}">Create</a>
-        <a class="navbar-brand" th:href="@{/grocery-lists}">Grocery Lists</a>
+        <a class="navbar-brand" th:href="@{/recipes/create}">Create</a>
+        <br>
+        <p>Grocery List</p>
+        <a class="navbar-brand" th:href="@{/grocery-list/all}">Grocery Lists</a>
+        <a class="navbar-brand" th:href="@{/grocery-list/create}">Create</a>
     </div>
 </div>
 

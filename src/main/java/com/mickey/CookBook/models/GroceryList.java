@@ -56,7 +56,6 @@ public class GroceryList {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateCreated=" + dateCreated +
-//                ", ingredients=" + ingredients +
                 '}';
     }
 }
