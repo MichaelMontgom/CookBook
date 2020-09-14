@@ -54,4 +54,8 @@ public class IngredientService {
 
 
     }
+
+    public void saveIngredient(Ingredient ingredient){
+        ingredientRepository.save(ingredient);
+    }
 }

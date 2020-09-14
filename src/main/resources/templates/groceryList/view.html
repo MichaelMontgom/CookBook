@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${groceryList.name}"></title>
+
+    <style>
+        .lineItem{
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 <div class="sidenav" th:replace=" fragments/sidenav :: sidenav"></div>
@@ -21,7 +27,11 @@
                 <th scope="row">items</th>
                 <td>
                     <ul th:each="ingredient: ${ingredients}" class="list-group list-group-flush">
-                        <li th:text="${ingredient.amount} + ' ' + ${ingredient.unit} + ' ' + ${ingredient.description} " class="list-group-item" ></li>
+                        <div class="lineItem">
+                            <li th:text="${ingredient.amount} + ' ' + ${ingredient.unit} + ' ' + ${ingredient.description} "  class="list-group-item" ></li>
+                            <a  class="btn btn-primary" th:href="${'/grocery-list/delete-ingredient/' + groceryList.getId() + '/' + ingredient.getId() }">Delete</a>
+                        </div>
+
 
                     </ul>
                 </td>
@@ -29,6 +39,12 @@
 
             </tbody>
         </table>
+    </div>
+
+
+
+    <div>
+        <a class="btn btn-primary" th:href="${'/grocery-list/delete/' + groceryList.getId()}">Delete</a>
     </div>
 
 </div>

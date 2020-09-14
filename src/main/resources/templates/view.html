@@ -60,6 +60,10 @@
     </div>
 
     <div>
+        <p th:text="'Views: ' + ${recipe.views}" class="mb-0"></p>
+    </div>
+
+    <div>
         <a class="btn btn-primary" th:href="${'/recipes/edit/' + recipe.getId()}">Edit</a>
         <a class="btn btn-primary" th:href="${'/recipes/delete/' + recipe.getId()}">Delete</a>
     </div>

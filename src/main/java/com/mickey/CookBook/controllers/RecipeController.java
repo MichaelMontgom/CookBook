@@ -146,6 +146,8 @@ public class RecipeController {
         if(recipe.isPresent()){
             Recipe r = recipe.get();
             logger.info(r.toString());
+            r.setViews(r.getViews() + 1);
+            recipeService.saveRecipe(r);
             model.addAttribute("recipe", r);
             logger.info(recipeService.getIngredients(recipeId).toString());
             model.addAttribute("ingredients", recipeService.getIngredients(recipeId));

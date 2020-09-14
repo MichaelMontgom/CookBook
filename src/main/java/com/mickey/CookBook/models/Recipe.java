@@ -34,6 +34,9 @@ public class Recipe {
     @Column
     private String difficulty;
 
+    @Column
+    private int views = 0;
+
     @Lob
     @Column(columnDefinition = "BLOB")
     private byte[] picture;
@@ -110,7 +113,13 @@ public class Recipe {
         this.difficulty = difficulty;
     }
 
+    public int getViews() {
+        return views;
+    }
 
+    public void setViews(int views) {
+        this.views = views;
+    }
 
     @Override
     public String toString() {

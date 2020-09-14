@@ -1,9 +1,6 @@
 package com.mickey.CookBook.controllers;
 
-import com.mickey.CookBook.models.GroceryList;
-import com.mickey.CookBook.models.GroceryListForm;
-import com.mickey.CookBook.models.Ingredient;
-import com.mickey.CookBook.models.Recipe;
+import com.mickey.CookBook.models.*;
 import com.mickey.CookBook.service.GroceryListService;
 import com.mickey.CookBook.service.IngredientService;
 import com.mickey.CookBook.service.RecipeService;
@@ -109,6 +106,63 @@ public class GroceryListController {
         return "groceryList/view";
     }
 
+
+    @GetMapping("/grocery-list/delete/{id}")
+    private String deleteGroceryList(Model model, @PathVariable String id){
+
+        Long GLID = Long.parseLong(id);
+
+
+        Optional<GroceryList> gl = groceryListService.findById(GLID);
+
+        if(gl.isPresent()){
+            model.addAttribute("groceryList", gl.get());
+            model.addAttribute("ingredients", groceryListService.getIngredients(GLID));
+            model.addAttribute("groceryListForm", new GroceryListForm());
+
+        }
+
+
+
+        return "groceryList/delete";
+    }
+
+    @PostMapping("/grocery-list/delete/confirmation")
+    private String deleteConfirmation(Model model, @ModelAttribute GroceryListForm groceryListForm, @RequestParam("groceryListId") Long id){
+
+        groceryListService.deleteById(id);
+
+        model.addAttribute("groceryLists", groceryListService.findAll());
+
+
+        return "groceryList/groceryLists";
+    }
+
+
+    @GetMapping("/grocery-list/delete-ingredient/{grocery_id}/{ingredient_id}")
+    private String deleteIngredient(@PathVariable String grocery_id, @PathVariable String ingredient_id, Model model){
+
+        // TODO add way to delete ingredients off of grocery lists
+        Long GLID = Long.parseLong(grocery_id);
+        Long i_id = Long.parseLong(ingredient_id);
+
+        Optional<GroceryList> gl = groceryListService.findById(GLID);
+        Optional<Ingredient> i = ingredientService.findById(i_id);
+        if(gl.isPresent()){
+            if(i.isPresent()){
+                i.get().setGroceryList(null);
+                ingredientService.saveIngredient(i.get());
+
+            }
+        }
+
+        model.addAttribute("groceryList", gl.get());
+        model.addAttribute("ingredients", groceryListService.getIngredients(GLID));
+
+
+
+        return "groceryList/view";
+    }
 
 
 
